@@ -1,0 +1,36 @@
+---
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      target: base
+    tty: true
+    environment:
+      RMDB_HOST: db
+      MS_HOST: messagestore
+    ports:
+      - 8080:8080
+      - 5003:5003
+    depends_on:
+      - messagestore
+      - db
+    links:
+      - messagestore
+      - db
+
+  messagestore:
+    image: ethangarofolo/eventide-message-store-postgres # eventide messagestore image here
+    ports:
+      - 5432:5432
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE: names
+      MYSQL_ROOT_PASSWORD: mypassword
+    ports:
+      - 3306:3306

@@ -1,0 +1,5 @@
+gin-bin
+**/*/gin-bin
+src/gin-bin
+client/node_modules
+**/*/node_modules

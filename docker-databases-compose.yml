@@ -1,0 +1,18 @@
+---
+version: "3.7"
+
+services:
+  messagestore:
+    image: ethangarofolo/eventide-message-store-postgres # eventide messagestore image here
+    ports:
+      - 5432:5432
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE: names
+      MYSQL_ROOT_PASSWORD: mypassword
+    ports:
+      - 3306:3306
