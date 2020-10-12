@@ -21,7 +21,9 @@ services:
       - db
 
   messagestore:
-    image: ethangarofolo/eventide-message-store-postgres # eventide messagestore image here
+    build:
+      context: .
+      dockerfile: Dockerfile.ms
     ports:
       - 5432:5432
   db:
